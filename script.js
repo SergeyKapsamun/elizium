@@ -85,6 +85,11 @@ validation1
       rule: "number",
       errorMessage: "Количество гостей должно быть числом",
     },
+    {
+      rule: "minNumber",
+      value: 1,
+      errorMessage: "Количество гостей должно быть больше одного",
+    },
   ])
   .addField('input[name="age"]', [
     {
@@ -94,6 +99,11 @@ validation1
     {
       rule: "number",
       errorMessage: "Возраст должен быть числом",
+    },
+    {
+      rule: "minNumber",
+      value: 1,
+      errorMessage: "Возраст должен быть больше 0",
     },
   ]);
 
@@ -142,6 +152,11 @@ validation2
       rule: "number",
       errorMessage: "Количество гостей должно быть числом",
     },
+    {
+      rule: "minNumber",
+      value: 1,
+      errorMessage: "Количество гостей должно быть больше одного",
+    },
   ])
   .addField('input[name="age2"]', [
     {
@@ -151,6 +166,11 @@ validation2
     {
       rule: "number",
       errorMessage: "Возраст должен быть числом",
+    },
+    {
+      rule: "minNumber",
+      value: 1,
+      errorMessage: "Возраст должен быть больше 0",
     },
   ]);
 
