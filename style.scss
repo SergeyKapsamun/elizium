@@ -407,6 +407,7 @@ header {
   }
 }
 .cards-button {
+  margin-top: 20px;
   font-size: 15px;
   font-family: $fontFM;
   font-weight: 500;
@@ -1121,7 +1122,7 @@ footer {
     }
   }
 }
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 430px) {
   .home {
     overflow: hidden;
     .home-img {
