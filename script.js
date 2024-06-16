@@ -197,7 +197,7 @@ val2.addEventListener("submit", function (event) {
     console.log("Форма содержит ошибки");
   } else {
     console.log("Форма успешно отправлена");
-    //   form.submit(); // Убедитесь, что это здесь вызывается для отправки формы после валидации
+    //   form.submit();
   }
 });
 
@@ -205,13 +205,20 @@ if (window.matchMedia("(max-width: 425px)").matches) {
   const allCards = document.querySelectorAll(".cards");
 
   allCards.forEach((elem) => {
+    let kol = 0;
     if (elem.children.length > 3) {
       for (let i = 0; i < elem.children.length; i++) {
-        if (i >= 2) {
+        if (i > 2) {
           elem.children[i].style.display = "none";
           elem.children[i].classList.add("card-hidden");
+          kol++;
         }
       }
+    }
+
+    if (kol === 0) {
+      console.log(kol);
+      console.log((elem.parentNode.children[3].style.display = "none"));
     }
   });
 
@@ -219,13 +226,32 @@ if (window.matchMedia("(max-width: 425px)").matches) {
     button.addEventListener("click", function () {
       const cards = this.parentNode.querySelector(".cards").children;
       const height = cards[0].offsetHeight;
+
       for (let i = 0; i < cards.length; i++) {
         if (cards[i].style.display === "none") {
           cards[i].style.display = "flex";
-
+          if (!proverka(cards)) {
+            this.style.display = "none";
+          }
           return;
         }
       }
     });
   });
+}
+
+function proverka(cards) {
+  let bool = 0;
+  for (let i = 0; i < cards.length; i++) {
+    if (cards[i].style.display === "none") {
+      bool++;
+      return bool;
+    }
+  }
+
+  if (bool > 0) {
+    return true;
+  } else {
+    return false;
+  }
 }
