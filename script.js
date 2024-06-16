@@ -200,3 +200,32 @@ val2.addEventListener("submit", function (event) {
     //   form.submit(); // Убедитесь, что это здесь вызывается для отправки формы после валидации
   }
 });
+
+if (window.matchMedia("(max-width: 425px)").matches) {
+  const allCards = document.querySelectorAll(".cards");
+
+  allCards.forEach((elem) => {
+    if (elem.children.length > 3) {
+      for (let i = 0; i < elem.children.length; i++) {
+        if (i >= 2) {
+          elem.children[i].style.display = "none";
+          elem.children[i].classList.add("card-hidden");
+        }
+      }
+    }
+  });
+
+  document.querySelectorAll(".cards-button").forEach((button) => {
+    button.addEventListener("click", function () {
+      const cards = this.parentNode.querySelector(".cards").children;
+      const height = cards[0].offsetHeight;
+      for (let i = 0; i < cards.length; i++) {
+        if (cards[i].style.display === "none") {
+          cards[i].style.display = "flex";
+
+          return;
+        }
+      }
+    });
+  });
+}

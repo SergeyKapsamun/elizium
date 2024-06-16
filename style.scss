@@ -16,10 +16,14 @@ $colorPink: #f10175;
 $fontFM: "Montserrat";
 body {
   background-color: black;
+}
+.max-width {
+  margin: auto;
+}
+.center {
   max-width: 1440px;
   margin: auto;
 }
-
 header {
   display: flex;
   justify-content: space-between;
@@ -103,6 +107,7 @@ header {
 }
 
 .forma {
+  position: relative;
   display: flex;
   margin: 100px 7%;
   gap: 5%;
@@ -156,7 +161,7 @@ header {
     align-items: center;
     gap: 40px;
     font-size: 20px;
-    font-family: Montserrat;
+    font-family: $fontFM;
     .list-img {
       min-width: 87px;
       display: flex;
@@ -208,12 +213,12 @@ header {
     bottom: 118px;
   }
   .star-forma_5 {
-    right: -23%;
-    bottom: 60px;
+    right: -60px;
+    bottom: 90px;
   }
   .star-forma_4 {
-    right: -31%;
-    bottom: 135px;
+    right: -115px;
+    bottom: 185px;
   }
 }
 
@@ -257,7 +262,7 @@ header {
     border-radius: 10px;
     font-size: 14px;
 
-    font-family: "Monserat";
+    font-family: $fontFM;
     border: none;
     padding-left: 55px;
     ::placeholder {
@@ -284,7 +289,7 @@ header {
   border-radius: 10px;
   font-size: 18px;
   font-weight: 700;
-  font-family: "Monserat";
+  font-family: $fontFM;
   transition: all 0.5s;
   &:hover {
     background: #ae33ca;
@@ -309,17 +314,24 @@ header {
   }
 }
 .cards {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 2%;
+  position: relative;
 }
 .card {
-  max-width: 315px;
-  max-height: 250px;
   font-family: $fontFM;
   overflow: hidden;
   position: relative;
   transition: all 1s ease-out;
 
+  .shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 99.95%);
+  }
   .card-title {
     font-size: 20px;
     font-weight: 700;
@@ -378,6 +390,27 @@ header {
   .description {
     display: none;
   }
+}
+.card-hidden {
+  animation-name: card;
+  animation-duration: 0.5s;
+}
+@keyframes card {
+  from {
+    width: 0%;
+    transform: scale(0.5) rotate(180deg);
+  }
+  to {
+    height: 100%;
+
+    transform: scale(1) rotate(0deg);
+  }
+}
+.cards-button {
+  font-size: 15px;
+  font-family: $fontFM;
+  font-weight: 500;
+  display: none;
 }
 
 $modal-background-color: rgba(0, 0, 0, 0.6);
@@ -471,6 +504,10 @@ $transition-duration: 0.3s;
 .away-quest {
   margin: 130px 7%;
   position: relative;
+
+  .picrures {
+    display: none;
+  }
   h2 {
     text-align: center;
     margin: 91px 0;
@@ -478,7 +515,8 @@ $transition-duration: 0.3s;
   .rocket {
     position: absolute;
     width: 671px;
-    transform: translateX(40%) translateY(97px);
+    left: 21%;
+    top: 74px;
   }
   .planet-answer {
     position: absolute;
@@ -584,10 +622,18 @@ $transition-duration: 0.3s;
   position: relative;
   margin: 296px 0;
   max-height: 480px;
-
+  .pictures-mini {
+    display: none;
+  }
   .waves {
     position: relative;
     width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+  .waves2 {
+    display: none;
   }
   .wave-bottom {
     position: absolute;
@@ -605,7 +651,7 @@ $transition-duration: 0.3s;
     left: 3.2%;
     top: -65px;
     display: flex;
-    gap: 262px;
+    gap: 250px;
   }
   .wrapper-bottom {
     position: absolute;
@@ -624,6 +670,12 @@ $transition-duration: 0.3s;
     border-radius: 50%;
     height: 200px;
     object-fit: cover;
+    transform: scale(1);
+    transition: all 0.5s ease-in-out;
+    &:hover {
+      transform: scale(1.2);
+      box-shadow: 0px 0px 30px 0px rgba(255, 255, 255, 0.25);
+    }
   }
   .title-game-wrapper {
     display: flex;
@@ -645,7 +697,8 @@ $transition-duration: 0.3s;
   .planet,
   .star-big_left,
   .star-big-right,
-  .star-small {
+  .star-small,
+  .star-fast {
     position: absolute;
   }
 
@@ -669,6 +722,10 @@ $transition-duration: 0.3s;
     right: 25%;
     bottom: 10px;
   }
+  .star-fast {
+    right: 36%;
+    top: 25px;
+  }
 }
 footer {
   display: flex;
@@ -679,5 +736,555 @@ footer {
     font-size: 12px;
     font-family: $fontFM;
     max-width: 960px;
+  }
+}
+@media only screen and (max-width: 1100px) {
+  .card {
+    .card-title {
+      font-size: 16px;
+    }
+  }
+  .wrapper-cards {
+    position: relative;
+    margin: 30px 3%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .away-quest .rocket {
+    width: 500px;
+    left: 18%;
+    top: 31%;
+  }
+  .swiper-button-next {
+    right: 6%;
+  }
+  .swiper-button-prev {
+    left: 6%;
+  }
+  .game {
+    .game-block {
+      max-width: 150px;
+      justify-content: center;
+    }
+    .game-img {
+      max-width: 125px;
+      max-height: 125px;
+    }
+    .wrapper-top {
+      gap: 170px;
+      top: -18px;
+      left: 2.2%;
+    }
+    .wrapper-bottom {
+      gap: 175px;
+      bottom: -190px;
+    }
+    .count {
+      font-size: 38px;
+    }
+    .title-game {
+      font-size: 14px;
+      padding-right: 25px;
+    }
+    .title-game-wrapper {
+      margin-top: 10px;
+      gap: 5px;
+    }
+    .game-description {
+      font-size: 10px;
+    }
+  }
+  .stars-bottom-pictures {
+    display: none;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .title {
+    font-size: 18px;
+  }
+
+  header {
+    .logo {
+      max-height: 44px;
+    }
+    .contacts {
+      gap: 10px;
+      height: auto;
+      align-items: center;
+    }
+    a {
+      font-size: 14px;
+    }
+    .number {
+      max-height: 11px;
+      gap: 5px;
+      padding-right: 10px;
+      img {
+        max-height: inherit;
+      }
+    }
+    .messager {
+      gap: 5px;
+      img {
+        max-height: 18px;
+      }
+    }
+  }
+  .home {
+    height: 182px;
+    .play-home {
+      max-width: 32px;
+      img {
+        max-width: inherit;
+      }
+    }
+    h1 {
+      font-size: 19px;
+      &:before,
+      &:after {
+        content: url("./img/rebro_home_mini.svg");
+        left: -2%;
+      }
+      &:after {
+        bottom: 20px;
+      }
+      &:before {
+        top: 15px;
+      }
+    }
+    h2 {
+      font-size: 14px;
+    }
+  }
+  .forma {
+    flex-direction: column;
+    margin: 30px 0%;
+    overflow-x: clip;
+    gap: 0px;
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .lists {
+      gap: 14px;
+      padding: 0 5px;
+      width: fit-content;
+      margin: auto;
+    }
+    .list {
+      font-size: 12px;
+      gap: 15px;
+      .list-img {
+        max-width: 35px;
+        min-width: auto;
+        img {
+          max-width: inherit;
+        }
+      }
+    }
+
+    .cloud1 {
+      max-width: 65px;
+      right: 16% !important;
+    }
+    .star-form {
+      display: none;
+    }
+    .snapedit {
+      top: -20px;
+      right: 14% !important;
+      max-width: 12px;
+    }
+    .planet {
+      max-width: 51px;
+      bottom: 15px !important;
+      right: -8px !important;
+    }
+    .small-stars {
+      height: 27px !important;
+      max-width: 18px;
+      left: 0% !important;
+      top: -185px;
+      .star1 {
+        max-width: 18px;
+        top: 0px;
+      }
+      .star2 {
+        max-width: 9px;
+        top: 15px !important;
+        right: -12px !important;
+      }
+      .star3 {
+        display: none;
+      }
+    }
+    .star-top {
+      max-width: 45px;
+      top: 196px !important;
+      left: 10% !important;
+      transform: rotateY(180deg);
+    }
+    .forma-post-title {
+      font-size: 15px;
+      margin: auto;
+      max-width: 187px;
+      display: flex;
+      text-align: center;
+    }
+    .pictures {
+      display: none;
+    }
+    .forma-title-text {
+      font-size: 15px;
+      text-align: center;
+      padding-bottom: 20px;
+      width: 100%;
+    }
+  }
+
+  .forma-post {
+    min-width: 336px;
+    margin: auto;
+    gap: 18px;
+    input {
+      height: 50px;
+    }
+    .input-container {
+      gap: 10px;
+      img {
+        max-width: 20px;
+        bottom: 14px !important;
+      }
+    }
+  }
+  .just-validate-error-label {
+    font-size: 12px;
+  }
+  .btn {
+    height: 50px;
+    font-size: 16px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .card-title {
+    font-size: 18px !important;
+  }
+
+  .away-quest {
+    margin: 40px 4px;
+    overflow-x: hidden;
+    .rocket {
+      top: 0px;
+    }
+    .planet-answer {
+      max-height: 105px;
+      top: 45px;
+    }
+    h2 {
+      margin: 20px 0;
+    }
+  }
+  .answer-position {
+    .answer {
+      width: 175px;
+    }
+    h3 {
+      font-size: 15px;
+      margin: 10px 0;
+    }
+    .answer-description {
+      font-size: 12px;
+    }
+  }
+  .swiper-wrapper {
+    max-width: 420px;
+  }
+
+  footer {
+    padding: 20px 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .game {
+    margin-top: 195px;
+    margin-bottom: 250px;
+    max-height: max-content;
+    .waves {
+      display: none;
+    }
+    .waves2 {
+      display: flex;
+      justify-content: center;
+    }
+    .wrapper-top,
+    .wrapper-bottom {
+      flex-direction: column;
+    }
+    .wrapper-bottom {
+      left: 54%;
+      top: 93px;
+      gap: 22px;
+    }
+    .wrapper-top {
+      gap: 53px;
+      top: -73px;
+      left: 26%;
+    }
+    .wave-bottom {
+      top: 20px;
+    }
+    .planet {
+      max-width: 94px;
+      top: -55px;
+    }
+    .cloud {
+      display: none;
+    }
+    .star-fast {
+      max-height: 34px;
+      right: 42%;
+      top: 80px;
+    }
+    .star-big_left {
+      max-width: 18px;
+      left: 44%;
+      bottom: 222px;
+    }
+    .star-big-right {
+      display: none;
+    }
+    .star-small {
+      max-width: 12px;
+      left: 31%;
+      bottom: 200px;
+    }
+    .game-block {
+      align-items: center;
+    }
+    .pictures-mini {
+      display: block;
+      position: relative;
+      max-height: 150px;
+      max-width: 150px;
+      bottom: -887px;
+      left: 30%;
+      img {
+        position: absolute;
+      }
+      .planet {
+        left: 0;
+        bottom: 0;
+      }
+      .star-blin {
+        right: 27%;
+        top: -95px;
+      }
+      .star-blin_rever {
+        max-width: 19px;
+        transform: rotateY(-180deg);
+        right: 13%;
+        top: -55px;
+      }
+      .star_big {
+        max-width: 10px;
+        right: 0%;
+        top: -100px;
+      }
+      .star_smal1 {
+        max-width: 7px;
+        right: 36%;
+        top: -40px;
+      }
+      .star_smal2 {
+        max-width: 7px;
+        right: 9%;
+        top: -0px;
+      }
+      .star-blin-main {
+        top: -1057px;
+        left: -8%;
+      }
+      .star-long1 {
+        max-height: 15px;
+        top: -961px;
+        left: 135%;
+      }
+      .star-long2 {
+        top: -911px;
+        left: 122%;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 425px) {
+  .home {
+    overflow: hidden;
+    .home-img {
+      transform: rotateY(180deg) scaleY(1.5) scaleX(1.5);
+
+      object-position: 1% 63%;
+    }
+  }
+  .cards-button {
+    display: block;
+  }
+  .cards {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .wrapper-cards {
+    margin: 30px 47px;
+    .palnetF {
+      display: none;
+    }
+  }
+
+  .answer-position {
+    gap: 102px;
+
+    .answer {
+      width: 175px;
+    }
+    &:nth-child(2) {
+      margin-top: 110px;
+    }
+  }
+
+  .away-quest {
+    .picrures {
+      position: relative;
+      display: flex;
+      width: 100%;
+      img {
+        position: absolute;
+      }
+    }
+    .cloud {
+      top: 190px;
+      left: 62px;
+    }
+    .snap_top {
+      right: 38%;
+      top: 75px;
+    }
+    .snap_top-mini {
+      max-height: 18px;
+      right: 27%;
+      top: 115px;
+    }
+    .snap_cloud-mini {
+      max-height: 18px;
+      left: 12%;
+      top: 190px;
+    }
+    .snap-bottom {
+      left: 35%;
+      top: 625px;
+    }
+    .saturn {
+      left: -1%;
+      top: 572px;
+    }
+    .star-fast {
+      right: 0%;
+      top: 285px;
+    }
+    .planeta-bul {
+      right: 13%;
+      top: 475px;
+    }
+    .planeta_depression {
+      left: 28%;
+      top: 390px;
+    }
+    .star_five {
+      left: 7%;
+      top: 390px;
+    }
+    .star_five-mini_one {
+      max-height: 12px;
+      left: 18%;
+      top: 425px;
+    }
+    .star_five-mini_two {
+      max-height: 12px;
+      right: 2%;
+      top: 470px;
+    }
+    .rocket {
+      display: none;
+    }
+  }
+  .swiper-wrapper {
+    max-width: 256px;
+  }
+  .swiper-button-next {
+    right: 4%;
+
+    &:after {
+      font-size: 14px;
+    }
+  }
+  .swiper-button-prev {
+    left: 4%;
+    &:after {
+      font-size: 14px;
+    }
+  }
+  .slider {
+    .star2,
+    .star-fast,
+    .star1,
+    .planet {
+      display: none;
+    }
+  }
+  .game {
+    .wrapper-top {
+      left: 14px;
+    }
+    .pictures-mini {
+      left: 8%;
+    }
+  }
+
+  .wrapped-modal-card {
+    overflow: hidden;
+    .modal-card {
+      max-width: 320px;
+    }
+    .modal-card-title {
+      font-size: 18px !important;
+    }
+    .modal-card-count {
+      font-size: 12px;
+    }
+    .modal-card-description {
+      font-size: 10px !important;
+      margin-top: 7px !important;
+    }
+  }
+  .away-quest .planet-answer {
+    right: -5%;
+  }
+  .forma-post {
+    min-width: 300px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .answer-position .answer {
+    width: auto;
+  }
+  .away-quest .cloud {
+    left: 43px;
+  }
+  .game .wrapper-top {
+    left: 3px;
+    top: -80px;
   }
 }
